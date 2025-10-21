@@ -1,0 +1,10 @@
+    <% if(typeof msgError !== 'undefined'){
+        if(msgError !== null){%>
+            <div class="msgError"><p><%= msgError %></p></div>
+    <%}}%>  
+
+    
+    <% if(typeof msgSuccess !== 'undefined'){
+        if(msgSuccess !== null){%>
+        <div class="msgSuccess"><p><%= msgSuccess %></p></div>
+    <%}}%>

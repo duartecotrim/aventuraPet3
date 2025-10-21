@@ -1,0 +1,19 @@
+<main>
+      <%- include('../layout/msg'); -%>
+    <div>barra de progresso</div>
+    <a href="/new-account/name">voltar <- </a>
+    <h1>DADOS DE CONTAO</h1>
+    <h5>avisos de privacidade</h5>
+
+   
+    <form action="/new-account/password" method="post">
+        <label>telefone</label>
+        <input type="tel" name="telefone">
+        <label>email</label>
+        <input type="email" name="email">
+        <label>cep</label>
+        <input type="cep" name="cep">
+        <input type="submit" value="SEGUINTE">
+    </form>
+</main>
+
