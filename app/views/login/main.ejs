@@ -1,4 +1,21 @@
 <main>
     <%- include('../layout/msg'); -%>
+    <img class="logo" src="/img/logo.png" alt="logo aventura pet">
+    <br>
+    <p>Ao tocar em "Continuar", você concorda com nossos termos. Saiba como processamos seus dados em nossa <u>Política de Privacidade</u> e <u>Política de Cookies</u>.</p>
 
+    <br>
+    <form id="form">
+        <div class="input-container">
+            <i class="fas fa-envelope"></i>
+            <input type="email" class="email" placeholder="Continuar com Email">
+        </div>
+        <div class="input-container">
+            <input type="password" class="password" placeholder="Continuar com Senha">
+        </div>
+        <br>
+        <button type="submit" class="continue-button">Continuar</button>
+    </form>
+    <h2><a style="text-decoration: none; color: #00376b;" href="/new-account">Criar conta</a></h2>
+    <h2><a style="text-decoration: none; color: #00376b;" href="/">Problemas para entrar?</a></h2>
 </main>

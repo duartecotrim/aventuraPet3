@@ -1,3 +1,447 @@
 <main>
- 
+    <!-- Hero Section -->
+    <%- include('hero') -%>
+
+    <!-- About Section -->
+    <section id="sobre" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre a Adoção</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        A adoção de pets é uma prática cada vez mais importante, pois além de salvar vidas, traz imensa
+                        alegria tanto para o animal quanto para os adotantes. Os animais resgatados geralmente vêm de
+                        situações difíceis, mas com amor e cuidado, eles podem ser os melhores companheiros.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-heart feature-icon"></i>
+                            <h3>Amor Incondicional</h3>
+                            <p>Pets adotados demonstram gratidão eterna e lealdade sem limites.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <h3>Responsabilidade</h3>
+                            <p>Cada adoção é um compromisso sério com a vida e bem-estar do animal.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users feature-icon"></i>
+                            <h3>Comunidade</h3>
+                            <p>Faça parte de uma comunidade que valoriza o respeito aos animais.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="floating-cards">
+                        <div class="floating-card">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="floating-card">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="floating-card">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pets Section -->
+    <section id="pets" class="pets-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Pets para Adoção</h2>
+                <p class="section-subtitle">Conheça alguns dos nossos amigos esperando por um lar</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="pets-grid">
+                <div class="pet-card" data-pet="rex">
+                    <div class="pet-image-container">
+                        <img src="/img/Zeus-cachorro_10.jpeg" alt="Rex" loading="lazy">
+                        <div class="pet-overlay">
+                            <div class="pet-actions">
+                                <button class="action-btn favorite" title="Favoritar">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn share" title="Compartilhar">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="pet-status">
+                            <span class="status-badge available">Disponível</span>
+                        </div>
+                    </div>
+                    <div class="pet-info">
+                        <h3 class="pet-name">Rex</h3>
+                        <div class="pet-details">
+                            <span class="pet-age"><i class="fas fa-calendar"></i> 3 anos</span>
+                            <span class="pet-breed"><i class="fas fa-dna"></i> Labrador</span>
+                        </div>
+                        <p class="pet-description">
+                            Cão amigável, adora crianças e brincadeiras. Muito carinhoso e cheio de energia!
+                        </p>
+                        <div class="pet-traits">
+                            <span class="trait">Brincalhão</span>
+                            <span class="trait">Carinhoso</span>
+                            <span class="trait">Sociável</span>
+                        </div>
+                        <button class="adopt-btn">
+                            <i class="fas fa-heart"></i>
+                            Adotar Rex
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pet-card" data-pet="luna">
+                    <div class="pet-image-container">
+                        <img src="/img/e7a3bdaa-b32d-4883-909f-f8abbf77d554.jpg" alt="Luna" loading="lazy">
+                        <div class="pet-overlay">
+                            <div class="pet-actions">
+                                <button class="action-btn favorite" title="Favoritar">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn share" title="Compartilhar">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="pet-status">
+                            <span class="status-badge available">Disponível</span>
+                        </div>
+                    </div>
+                    <div class="pet-info">
+                        <h3 class="pet-name">Luna</h3>
+                        <div class="pet-details">
+                            <span class="pet-age"><i class="fas fa-calendar"></i> 2 anos</span>
+                            <span class="pet-breed"><i class="fas fa-dna"></i> Siamês</span>
+                        </div>
+                        <p class="pet-description">
+                            Gata carinhosa, ideal para um lar tranquilo e cheio de amor. Adora carinho!
+                        </p>
+                        <div class="pet-traits">
+                            <span class="trait">Carinhosa</span>
+                            <span class="trait">Tranquila</span>
+                            <span class="trait">Afetuosa</span>
+                        </div>
+                        <button class="adopt-btn">
+                            <i class="fas fa-heart"></i>
+                            Adotar Luna
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pet-card" data-pet="mel">
+                    <div class="pet-image-container">
+                        <img src="/img/adocao-de-cachorro-filhote-1200x795.webp" alt="Mel" loading="lazy">
+                        <div class="pet-overlay">
+                            <div class="pet-actions">
+                                <button class="action-btn favorite" title="Favoritar">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn share" title="Compartilhar">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="pet-status">
+                            <span class="status-badge available">Disponível</span>
+                        </div>
+                    </div>
+                    <div class="pet-info">
+                        <h3 class="pet-name">Mel</h3>
+                        <div class="pet-details">
+                            <span class="pet-age"><i class="fas fa-calendar"></i> 8 meses</span>
+                            <span class="pet-breed"><i class="fas fa-dna"></i> SRD</span>
+                        </div>
+                        <p class="pet-description">
+                            Cachorrinha pequena e muito ativa. Ama correr e fazer novos amigos!
+                        </p>
+                        <div class="pet-traits">
+                            <span class="trait">Ativa</span>
+                            <span class="trait">Brincalhona</span>
+                            <span class="trait">Sociável</span>
+                        </div>
+                        <button class="adopt-btn">
+                            <i class="fas fa-heart"></i>
+                            Adotar Mel
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="section-footer">
+                <a class="view-more-btn" href="/app/views/home/pets.ejs">
+                    <span>Ver Todos os Pets</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Carousel Section -->
+    <!--<section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ofertas da Semana</h2>
+                <p class="section-subtitle">Produtos especiais para seu novo companheiro</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="products-carousel">
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" aria-label="Anterior">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-track">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/OIP.webp" alt="Ração Premier - Gatos" loading="lazy">
+                                <div class="product-badge">
+                                    <span>-15%</span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Ração Premier - Gatos</h3>
+                                <div class="product-price">
+                                    <span class="price-current">R$ 279,90</span>
+                                    <span class="price-original">R$ 329,90</span>
+                                </div>
+                                <button class="buy-btn">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Comprar Agora
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/OIP (1).webp" alt="Casa de madeira para pet" loading="lazy">
+                                <div class="product-badge">
+                                    <span>-20%</span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Casa de Madeira para Pet</h3>
+                                <div class="product-price">
+                                    <span class="price-current">R$ 149,90</span>
+                                    <span class="price-original">R$ 187,90</span>
+                                </div>
+                                <button class="buy-btn">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Comprar Agora
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/pote de ração.webp" alt="Pote de ração e água" loading="lazy">
+                                <div class="product-badge">
+                                    <span>-10%</span>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Pote de Ração e Água</h3>
+                                <div class="product-price">
+                                    <span class="price-current">R$ 99,90</span>
+                                    <span class="price-original">R$ 111,90</span>
+                                </div>
+                                <button class="buy-btn">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Comprar Agora
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Próximo">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-dots">
+                    <button class="dot active" data-slide="0"></button>
+                    <button class="dot" data-slide="1"></button>
+                    <button class="dot" data-slide="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Fique por Dentro das Novidades</h2>
+                    <p>Receba dicas de cuidados, histórias inspiradoras e novidades sobre nossos pets em seu e-mail.</p>
+                </div>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu melhor e-mail" required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Inscrever-se
+                        </button>
+                    </div>
+                    <div class="newsletter-stats">
+                        <span><i class="fas fa-users"></i> +5000 inscritos</span>
+                        <span><i class="fas fa-envelope"></i> Newsletter semanal</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-subtitle">Tem alguma dúvida? Fale conosco, estamos aqui para ajudar!</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon-wrapper">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Localização</h3>
+                            <p>São Paulo, SP - Brasil</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon-wrapper">
+                            <i class="fas fa-phone contact-icon"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telefone</h3>
+                            <p>(11) 9999-9999</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon-wrapper">
+                            <i class="fas fa-envelope contact-icon"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>E-mail</h3>
+                            <p>contato@aventurapet.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon-wrapper">
+                            <i class="fas fa-clock contact-icon"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Horário</h3>
+                            <p>Seg-Sex: 8h às 18h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contatoForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo</label>
+                                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="assunto">Assunto</label>
+                            <select id="assunto" name="assunto" required>
+                                <option value="">Selecione um assunto</option>
+                                <option value="adocao">Adoção de Pets</option>
+                                <option value="informacoes">Informações Gerais</option>
+                                <option value="parceria">Parcerias</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" placeholder="Conte-nos como podemos ajudar..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Aventura Pet</h3>
+                    <p>Transformando vidas através da adoção responsável de animais.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#pets">Pets</a></li>
+                        <li><a href="pets.html">Todos os Pets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Adoção</h4>
+                    <ul>
+                        <li><a href="#">Como Adotar</a></li>
+                        <li><a href="#">Requisitos</a></li>
+                        <li><a href="#">Dicas de Cuidados</a></li>
+                        <li><a href="#">Adoção Responsável</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#contato">Fale Conosco</a></li>
+                        <li><a href="#">Localização</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aventura Pet | Todos os direitos reservados. Desenvolvido com <i
+                        class="fas fa-heart"></i> para os animais.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Custom Alert -->
+    <div class="custom-alert" id="customAlert">
+        <div class="alert-content">
+            <i class="fas fa-check-circle"></i>
+            <span>Mensagem enviada com sucesso! Entraremos em contato em breve.</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    
+    <script>document.getElementById('current-page').textContent = 'Home';</script>
 </main>
