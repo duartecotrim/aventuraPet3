@@ -1,0 +1,52 @@
+<style>
+    .sizeImg {
+        width: 250px;
+    }
+</style>
+
+<main>
+    <%- include('../layout/msg'); 
+        
+    -%>
+    <form action="/aventura-pet/add-img" method="post" enctype="multipart/form-data">
+        <label>NOME DO PET</label>
+        <input type="text" name="namepet" id="">
+        <label>IMAGENS</label>
+        <input type="file" name="imgpet" id="imgpet" multiple accept="image/*">
+        <input type="submit" value="enviar">
+    </form>
+    <div id="imagens">
+
+    </div>
+</main>
+
+<script>
+    document.getElementById('imgpet').addEventListener("change", function (e){
+        //verifica se o numero de imagens é maior que o permitido
+        //avisa o usuario e limpa o elemento
+        if (e.target.files.length <= 3) {
+
+            var elementoPaiImg = document.getElementById('imagens');
+            //ler a imagem passada no formulario
+
+            for (let i = 0; i < e.target.files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function (img) {
+                    var elementoFilho = document.createElement("img");
+
+                    elementoFilho.setAttribute("src", img.target.result);
+                    elementoFilho.setAttribute("class", "sizeImg")
+
+                    elementoPaiImg.append(elementoFilho);
+                }
+                var file = e.target.files[i];
+                reader.readAsDataURL(file);
+            }
+            return;
+        }
+
+        document.getElementById('imgpet').value = "";
+        alert("quantidade de imagens maxima permitida é 3");
+    });
+
+</script>

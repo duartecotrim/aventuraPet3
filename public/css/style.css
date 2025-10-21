@@ -1,0 +1,497 @@
+/* Resetando margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo e Fontes */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #f8f8f8;
+    color: rgb(51, 51, 51);
+}
+
+/* Estilos do Cabeçalho */
+header {
+    background-color: #00376b;
+    color: #fff;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.356);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 30px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+header nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Seção Home */
+#home {
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+#home .hero-container {
+    background: #00376b;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+#home h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+#home p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    background-color: #ffcc00;
+    color: #1a1a1a;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #e0b800;
+}
+
+/* Seções Gerais */
+.section-padding {
+    padding: 50px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Sobre */
+#sobre h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+#sobre p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Cards de Pets */
+#pets h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pet-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.pet-card {
+    background-color: #fff;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.pet-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.pet-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.pet-info h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.pet-info p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.adotar-btn {
+    background-color: #00376b;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+    font-weight: 200;
+}
+
+.adotar-btn:hover {
+    background-color: #ffcc00;
+}
+
+.pet-card:hover {
+    transform: scale(1.05);
+}
+
+.ver-maisbtn {
+    display: block;
+    margin: auto;
+    background-color: #ffcc00;
+    color: #fff;
+    padding: 6px 6px  6px 6px;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 200;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    text-decoration: none;
+    width: 150px;
+    height: 50px;
+}
+
+.ver-maisbtn:hover {
+    background-color: #ffcc00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Menu Hamburguer */
+#menuToggle {
+    display: block;
+    position: relative;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    -webkit-touch-callout: none;
+}
+
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #fff;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+    transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+}
+
+#menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #fff;
+}
+
+#menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu {
+    position: absolute;
+    width: 300px;
+    margin: -100px 0 0 -250px;
+    padding: 50px;
+    padding-top: 125px;
+    background: #1a1a1a;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    transform-origin: 0% 0%;
+    transform: translate(100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li {
+    padding: 10px 0;
+    font-size: 22px;
+}
+
+#menu a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+#menu a:hover {
+    color: #ffcc00;
+}
+
+#menuToggle input:checked ~ ul {
+    transform: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #menuToggle {
+        display: block;
+    }
+    
+    header nav ul {
+        display: none;
+    }
+}
+
+/* Estilo para a seção de Contato */
+#contato {
+    background: linear-gradient(to right, #006cc4, #001f4e);
+    padding: 60px 20px;
+    color: #fff;
+    text-align: center;
+}
+
+#contato h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+#contato p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo do Formulário */
+#contatoForm {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#contatoForm input,
+#contatoForm textarea {
+    padding: 15px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1rem;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Foco nos campos de input e textarea */
+#contatoForm input:focus,
+#contatoForm textarea:focus {
+    border-color: #ffcc00;
+    background-color: #333;
+    outline: none;
+}
+
+/* Estilo do botão de envio */
+#contatoForm button {
+    background-color: #ffcc00;
+    color: #1a1a1a;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover no botão de envio */
+#contatoForm button:hover {
+    background-color: #e0b800;
+}
+
+/* Animação do Formulário */
+#contatoForm input,
+#contatoForm textarea,
+#contatoForm button {
+    transform: translateY(10px);
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards;
+}
+
+#contatoForm input:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+#contatoForm input:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+#contatoForm textarea {
+    animation-delay: 0.5s;
+}
+
+#contatoForm button {
+    animation-delay: 0.6s;
+}
+
+/* Definindo a animação de entrada */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-avtpet {
+    width: 67px;
+    height: auto;
+    margin-right: 10px;
+}
+
+header .logo h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.carrossel-compras {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+  
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .carousel-item {
+    background: white;
+    border-radius: 10px;
+    flex: 0 0 250px;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .carousel-item img {
+    max-width: 100%;
+    border-radius: 5px;
+  }
+  
+  .nome-produto {
+    font-weight: bold;
+    margin: .5rem 0;
+  }
+  
+  .preco {
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  
+  button {
+    background-color: #00376b;
+    color: white;
+    border: none;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #ffcc00;
+  }
+
+  .ofertas{
+    font-size: 35px;
+  }
