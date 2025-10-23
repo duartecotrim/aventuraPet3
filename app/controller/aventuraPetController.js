@@ -6,8 +6,8 @@ userModel.belongsTo(petUserModel, { foreignKey: "id_usuario" });
 petUserModel.belongsTo(imagePetModel, { foreignKey: "id_user_pet" })
 
 module.exports = {
-    index: function (req, res) {
-        res.render('aventura-pet/index', { fileName: 'main' });
+    index: async function (req, res) {      
+        res.render('aventura-pet/index', { fileName: 'main'});
     },
     addPetPage: function (req, res) {
 
@@ -50,9 +50,15 @@ module.exports = {
         );
 
         var img = Buffer.from(data[0].pet_user.image_pet.imagem, "base64");
-        var id_user_pet = data[0].pet_user.id_user_pet;
-        var nome_pet = data[0].pet_user.nome_pet;
-        console.log({ "img": img, "id_user_pet": id_user_pet, "nome_pet": nome_pet });
+       
+
+        return { 
+            "img": img,
+            "id_user_pet": data[0].pet_user.id_user_pet,
+            "nome_pet": data[0].pet_user.nome_pet,
+            "idade": data[0].pet_user.idade,
+            "caracteristica": data[0].pet_user.caracteristica
+        };
         //console.log(JSON.parse(JSON.stringify(data[0].pet_user.image_pet, null)))
     }
 }
