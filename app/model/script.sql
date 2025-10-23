@@ -32,6 +32,8 @@ CREATE TABLE pet_user(
     id_usuario INT,   
     nome_pet VARCHAR(50),
     disponivel BOOLEAN,
+    idade INT,
+    caracteristica TEXT(500),
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );
 

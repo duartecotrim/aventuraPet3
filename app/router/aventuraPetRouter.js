@@ -65,8 +65,8 @@ aventuraPetRouter.post('/aventura-pet/add-img',
 });
 
 aventuraPetRouter.get('/aventura-pet/get-img', function(req, res){
-    aventuraPetController.getImgPet(req, res)
-})
+    aventuraPetController.getImgPet(req, res,1)
+});
 
 module.exports = aventuraPetRouter;
 

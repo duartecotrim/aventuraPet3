@@ -20,6 +20,14 @@ const petUserModel = connect.define(
     disponivel: {
         type: DataTypes.BOOLEAN,
         allowNull: false
+    },
+    idade: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }, 
+    caracteristica:{
+        type: DataTypes.TEXT(500),
+        allowNull: false
     }
 },
     {
