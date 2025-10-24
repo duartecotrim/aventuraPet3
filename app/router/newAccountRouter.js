@@ -7,6 +7,68 @@ newAccountRouter.get('/new-account', function(req, res){
     newAccountController.index(req, res);
 });
 
+newAccountRouter.post('/new-account/create',
+    checkSchema({
+        user_name:{
+            in:['body'],
+            escape: true,
+            trim: true,
+            errorMessage: "Nome inválido, tente novamente",
+            notEmpty: true,
+            isLength: {
+                options: {
+                    min: 4,
+                    max: 100
+                }
+            }
+        },
+        email: {
+            in: ['body'],
+            errorMessage: "Email inválido",
+            trim: true,
+            escape: true,
+            notEmpty: true,
+            isEmail: true,
+            isLength: {
+                options: {
+                    max: 100
+                }
+            }
+        },
+        password:{
+            in:['body'],
+            isLength:{
+                options:{min:8}
+            },
+            matches:{
+                options: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/
+            },
+            trim: true,
+            escape: true
+        },
+        petPreference: {
+            in: ['body'],
+            errorMessage: "Preferência de pet inválida",
+            notEmpty: true,
+            isIn: {
+                options: [['cachorro', 'gato']]
+            }
+        }
+    }),
+    function(req, res){
+        let errorResult = validationResult(req);
+        if(!errorResult.isEmpty()){
+            let errorValidator = errorResult.array();
+            if(!req.session.strErrorMsg){
+                req.session.strErrorMsg = "";
+            }
+            req.session.strErrorMsg = errorValidator[0].msg;
+            return res.redirect('/new-account');
+        }
+
+        newAccountController.createAccount(req, res);
+});
+
 newAccountRouter.get('/new-account/name', function(req, res){
     newAccountController.namePage(req, res);
 });
