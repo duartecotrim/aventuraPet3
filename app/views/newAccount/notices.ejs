@@ -1,14 +1,181 @@
 <main>
-   <%- include('../layout/msg'); -%>
-    <h1>logog</h1>
-    <h2>bem vindo(a) a aventuraPet</h2>
-    <ul>
-        <li><span>aviso um</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat qui hic sequi quae nihil vitae. Incidunt id rerum, ipsa eveniet, voluptatem, totam cupiditate quod molestias aliquam et maiores in ab.</li>
-         <li><span>aviso dois</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat qui hic sequi quae nihil vitae. Incidunt id rerum, ipsa eveniet, voluptatem, totam cupiditate quod molestias aliquam et maiores in ab.</li>
-          <li><span>aviso tres</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat qui hic sequi quae nihil vitae. Incidunt id rerum, ipsa eveniet, voluptatem, totam cupiditate quod molestias aliquam et maiores in ab.</li>
-    </ul>
+    <%- include('../layout/msg'); -%>
+    <div class="logo-container">
+        <img src="/img/logo.png" alt="Aventura Pet Logo" class="logo">
+        <h1 class="brand-title">Aventura Pet</h1>
+        <p class="brand-subtitle">Crie sua conta e comece sua jornada com seu pet!</p>
+    </div>
+    <div class="form-container">
+        <!-- Step 1: Name -->
+        <div class="step" id="step1">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="step-icon">👤</div>
+            <h3>Qual é seu nome?</h3>
+            <p class="step-description">Vamos começar conhecendo você. Digite seu nome completo para personalizar sua experiência.</p>
+            <input type="text" id="user_name" name="user_name" placeholder="Digite seu nome completo" required>
+            <div class="error" id="nameError"></div>
+            <button type="button" onclick="nextStep(1)">Seguinte</button>
+        </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log(document.getElementById('user_name'));
+    });
+</script>
+        <!-- Step 2: Email -->
+        <div class="step" id="step2" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <button class="back-button" onclick="prevStep(2)">Voltar</button>
+            <div class="step-icon">📧</div>
+            <h3>Qual é seu email?</h3>
+            <p class="step-description">Precisamos de um email válido para criar sua conta e enviar notificações importantes.</p>
+            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+            <div class="error" id="emailError"></div>
+            <button type="button" onclick="nextStep(2)">Seguinte</button>
+        </div>
 
-    <a href="/new-account/name">SEGUINTE</a>
-    
-    
+        <!-- Step 3: Password -->
+        <div class="step" id="step3" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <button class="back-button" onclick="prevStep(3)">Voltar</button>
+            <div class="step-icon">🔒</div>
+            <h3>Crie uma senha segura</h3>
+            <p class="step-description">Sua senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.</p>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repita sua senha" required>
+            <div class="error" id="passwordError"></div>
+            <button type="button" onclick="nextStep(3)">Seguinte</button>
+        </div>
+
+        <!-- Step 4: Pet Preference -->
+        <div class="step" id="step4" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <button class="back-button" onclick="prevStep(4)">Voltar</button>
+            <div class="step-icon">🐾</div>
+            <h3>O que você prefere?</h3>
+            <p class="step-description">Conte-nos se você prefere cachorros ou gatos. Isso nos ajuda a personalizar sua experiência!</p>
+            <form id="registrationForm" action="/new-account/create" method="post">
+                <input type="hidden" name="user_name" id="hidden_user_name">
+                <input type="hidden" name="email" id="hidden_email">
+                <input type="hidden" name="password" id="hidden_password">
+                <div class="radio-group">
+                    <label class="pet-option">
+                        <input type="radio" name="petPreference" value="cachorro" required>
+                        <span class="pet-icon">🐶</span>
+                        <span class="pet-label">Cachorro</span>
+                    </label>
+                    <label class="pet-option">
+                        <input type="radio" name="petPreference" value="gato" required>
+                        <span class="pet-icon">🐱</span>
+                        <span class="pet-label">Gato</span>
+                    </label>
+                </div>
+                <div class="error" id="petError"></div>
+                <button type="submit">Criar Conta</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function updateProgress() {
+            const progress = document.getElementById('progress');
+            progress.style.width = `${(currentStep / totalSteps) * 100}%`;
+        }
+
+        function nextStep(step) {
+            if (validateStep(step)) {
+                // Hide current step
+                document.getElementById(`step${currentStep}`).style.display = 'none';
+                currentStep++;
+                // Show next step
+                document.getElementById(`step${currentStep}`).style.display = 'block';
+                updateProgress();
+                // If moving to step 4, populate hidden fields
+                if (currentStep === 4) {
+                    document.getElementById('hidden_user_name').value = document.getElementById('user_name').value;
+                    document.getElementById('hidden_email').value = document.getElementById('email').value;
+                    document.getElementById('hidden_password').value = document.getElementById('password').value;
+                }
+            }
+        }
+
+        function prevStep(step) {
+            // Hide current step
+            document.getElementById(`step${currentStep}`).style.display = 'none';
+            currentStep--;
+            // Show previous step
+            document.getElementById(`step${currentStep}`).style.display = 'block';
+            updateProgress();
+        }
+
+        function validateStep(step) {
+            let isValid = true;
+            let errorDiv;
+
+            if (step === 1) {
+                errorDiv = document.getElementById('nameError');
+                const name = document.getElementById('user_name').value;
+                if (name.length < 4 || name.length > 100) {
+                    errorDiv.textContent = 'Nome deve ter entre 4 e 100 caracteres.';
+                    isValid = false;
+                } else {
+                    errorDiv.textContent = '';
+                }
+            } else if (step === 2) {
+                errorDiv = document.getElementById('emailError');
+                const email = document.getElementById('email').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    errorDiv.textContent = 'Email inválido.';
+                    isValid = false;
+                } else {
+                    errorDiv.textContent = '';
+                }
+            } else if (step === 3) {
+                errorDiv = document.getElementById('passwordError');
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                if (password.length < 8 || !/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])/.test(password)) {
+                    errorDiv.textContent = 'Senha deve ter pelo menos 8 caracteres, incluindo maiúscula, minúscula, número e símbolo.';
+                    isValid = false;
+                } else if (password !== confirmPassword) {
+                    errorDiv.textContent = 'Senhas não coincidem.';
+                    isValid = false;
+                } else {
+                    errorDiv.textContent = '';
+                }
+            } else if (step === 4) {
+                errorDiv = document.getElementById('petError');
+                const petPreference = document.querySelector('input[name="petPreference"]:checked');
+                if (!petPreference) {
+                    errorDiv.textContent = 'Selecione uma preferência de pet.';
+                    isValid = false;
+                } else {
+                    errorDiv.textContent = '';
+                }
+            }
+
+            return isValid;
+        }
+
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            if (!validateStep(4)) {
+                e.preventDefault();
+            }
+            // If validation passes, let the form submit normally
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
 </main>
