@@ -9,6 +9,57 @@ module.exports = {
         res.render('newAccount/index', { fileName: 'notices', msgError: msgSession.getMsgError(req)});
         msgSession.cleanMsgError(req);
     },
+    createAccount: async function(req, res) {
+        const { user_name, email, password, petPreference } = req.body;
+
+        try {
+            // Check if email already exists
+            let userContact = await contactUserModel.findAll({where:{email: email}});
+            if(userContact.length != 0){
+                req.session.strErrorMsg = "Email já cadastrado. Por favor, tente recuperar a conta ou crie uma nova.";
+                return res.redirect('/new-account');
+            }
+
+            // Create new user
+            let newUser = await userModel.create({
+                nome_usuario: user_name,
+                tipo_usuario: 1
+            });
+
+            let idNewUser = newUser.id_usuario;
+
+            // For now, we'll use a default phone and cep since they're not in the slider
+            await contactUserModel.create({
+                id_usuario: idNewUser,
+                telefone: '00000000000', // Default or you might want to add this to the slider
+                cep: '00000000', // Default or you might want to add this to the slider
+                email: email
+            });
+
+            let salt = bcrypt.genSaltSync(10);
+            let hash = bcrypt.hashSync(password, salt);
+            let dateNow = new Date();
+
+            await passwordHashModel.create({
+                id_usuario: idNewUser,
+                password_hash: hash,
+                ativo: 1,
+                data_criacao: `${dateNow.getFullYear()}-${dateNow.getMonth() + 1}-${dateNow.getDate()}`
+            });
+
+            // You might want to save pet preference somewhere, perhaps in a new table or user model
+            // For now, we'll just log it
+            console.log(`User ${idNewUser} prefers: ${petPreference}`);
+
+            req.session.strSuccessMsg = "Nova conta criada com sucesso! Agora insira seu email e senha para entrar.";
+            return res.redirect('/login');
+
+        } catch (error) {
+            console.error(error);
+            req.session.strErrorMsg = "Erro ao tentar criar a nova conta. Por favor, tente novamente.";
+            return res.redirect('/new-account');
+        }
+    },
     namePage: function (req, res) {
         res.render('newAccount/index', { fileName: 'name', msgError: msgSession.getMsgError(req) });
         msgSession.cleanMsgError(req);
