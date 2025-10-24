@@ -26,7 +26,7 @@ loginRouter.post('/login/enter',
         pass: {
             in: ['body'],
             isLength: {
-                options: { min: 8 }
+                options: { min: 4 }
             },
             matches: {
                 options: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/
@@ -42,6 +42,7 @@ loginRouter.post('/login/enter',
             if (!req.session.strErrorMsg) {
                 req.session.strErrorMsg = "";
             }
+            console.log(errorResult);
             req.session.strErrorMsg = "senha invalido tente novamente";
             return res.redirect('/login');
             

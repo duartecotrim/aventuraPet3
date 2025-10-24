@@ -1,17 +1,22 @@
 <main>
     <%- include('../layout/msg'); -%>
-    <img class="logo" src="/img/logo.png" alt="logo aventura pet">
+      <div class="logo-container">
+        <img src="/img/logo.png" alt="Aventura Pet Logo" class="logo">
+        <h1 class="brand-title">Aventura Pet</h1>
+        <p class="brand-subtitle">Crie sua conta e comece sua jornada com seu pet!</p>
+    </div>
     <br>
     <p>Ao tocar em "Continuar", você concorda com nossos termos. Saiba como processamos seus dados em nossa <u>Política de Privacidade</u> e <u>Política de Cookies</u>.</p>
 
     <br>
-    <form id="form">
+    <form id="form" method="post" action="/login/enter">
         <div class="input-container">
             <i class="fas fa-envelope"></i>
-            <input type="email" class="email" placeholder="Continuar com Email">
+            <input type="email" class="email" name="email" placeholder="    Email">
         </div>
         <div class="input-container">
-            <input type="password" class="password" placeholder="Continuar com Senha">
+             <i class="fas fa-key"></i>
+            <input type="password" class="pass" name="pass" placeholder="    Senha">
         </div>
         <br>
         <button type="submit" class="continue-button">Continuar</button>
