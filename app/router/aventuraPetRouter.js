@@ -44,12 +44,34 @@ aventuraPetRouter.post('/aventura-pet/add-img',
                     max: 100
                 }
             }
-        }
+        },
+         idade:{
+            in:['body'],
+            escape: true,
+            trim: true,
+            errorMessage: "nome invalido tente novamente",
+            notEmpty: true,
+            isNumeric:true
+            
+         },
+          caracteristica:{
+            in:['body'],
+            escape: true,
+            trim: true,
+            errorMessage: "nome invalido tente novamente",
+            notEmpty: true,
+            isLength: {
+                options: {
+                    min: 4,
+                    max: 100
+                }
+            }
+          }
     }),   
     function(req, res){
     const errorResult = validationResult(req);
         
-
+console.log(req.body)
     if(!errorResult.isEmpty()){
         if(!req.session.strErrorMsg){
             req.session.strErrorMsg = "";
