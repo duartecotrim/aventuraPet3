@@ -22,7 +22,9 @@ module.exports = {
             const userPet = await petUserModel.create({
                 id_usuario: idUser,
                 nome_pet: req.body.namepet,
-                disponivel: true
+                disponivel: true,
+                idade: req.body.idade,
+                caracteristica: req.body.caracteristica
             });
 
             const idPetUser = userPet.id_user_pet;
@@ -38,8 +40,8 @@ module.exports = {
 
 
     },
-
-    getImgPet: async function (req, res, idUser) {
+    //apagar codigo no futuro
+    /*getImgPet: async function (req, res, idUser) {
         let data = await userModel.findAll({
             where: { id_usuario: idUser },
             include: {
@@ -60,5 +62,5 @@ module.exports = {
             "caracteristica": data[0].pet_user.caracteristica
         };
         //console.log(JSON.parse(JSON.stringify(data[0].pet_user.image_pet, null)))
-    }
+    }*/
 }
