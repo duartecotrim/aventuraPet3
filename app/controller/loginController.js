@@ -36,7 +36,7 @@ module.exports = {
         let arrContactUser = JSON.parse(JSON.stringify(contactUser, null));
         let idUser = arrContactUser[0].id_usuario;
         let passwordHash = await passwordHashModel.findAll({
-            id_usuario: idUser
+            where:{id_usuario: idUser}
         });
 
         //verifica se o usuario tem senha cadastrada

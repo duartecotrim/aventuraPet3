@@ -9,6 +9,7 @@ const petUserModel = connect.define(
         autoIncrement: true
     },
     id_usuario: {
+        
         type: DataTypes.INTEGER,
         allowNull: false
     },
