@@ -11,7 +11,7 @@ module.exports = {
     },
     createAccount: async function(req, res) {
         const { user_name, email, password, petPreference } = req.body;
-
+        
         try {
             // Check if email already exists
             let userContact = await contactUserModel.findAll({where:{email: email}});
