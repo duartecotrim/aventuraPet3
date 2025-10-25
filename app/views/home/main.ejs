@@ -1,117 +1,134 @@
 <main>
     <!-- Hero Section -->
     <%- include('hero') -%>
-<% console.log(data) %>
-    <!-- About Section -->
-    <section id="sobre" class="about-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Sobre a Adoção</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-description">
-                        A adoção de pets é uma prática cada vez mais importante, pois além de salvar vidas, traz imensa
-                        alegria tanto para o animal quanto para os adotantes. Os animais resgatados geralmente vêm de
-                        situações difíceis, mas com amor e cuidado, eles podem ser os melhores companheiros.
-                    </p>
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <i class="fas fa-heart feature-icon"></i>
-                            <h3>Amor Incondicional</h3>
-                            <p>Pets adotados demonstram gratidão eterna e lealdade sem limites.</p>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-shield-alt feature-icon"></i>
-                            <h3>Responsabilidade</h3>
-                            <p>Cada adoção é um compromisso sério com a vida e bem-estar do animal.</p>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-users feature-icon"></i>
-                            <h3>Comunidade</h3>
-                            <p>Faça parte de uma comunidade que valoriza o respeito aos animais.</p>
-                        </div>
+        <% //console.log(data) %>
+            <!-- About Section -->
+            <section id="sobre" class="about-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Sobre a Adoção</h2>
+                        <div class="section-divider"></div>
                     </div>
-                </div>
-                <div class="about-visual">
-                    <div class="floating-cards">
-                        <div class="floating-card">
-                            <i class="fas fa-paw"></i>
-                        </div>
-                        <div class="floating-card">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="floating-card">
-                            <i class="fas fa-home"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pets Section -->
-    <section id="pets" class="pets-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Pets para Adoção</h2>
-                <p class="section-subtitle">Conheça alguns dos nossos amigos esperando por um lar</p>
-                <div class="section-divider"></div>
-            </div>
-            <div class="pets-grid">
-               
-
-                <div class="pet-card" data-pet="luna">
-                    <div class="pet-image-container">
-                        <img src="data:image/png;base64, <%= data.img %>">
-                        <div class="pet-overlay">
-                            <div class="pet-actions">
-                                <button class="action-btn favorite" title="Favoritar">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="action-btn share" title="Compartilhar">
-                                    <i class="fas fa-share"></i>
-                                </button>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p class="about-description">
+                                A adoção de pets é uma prática cada vez mais importante, pois além de salvar vidas, traz
+                                imensa
+                                alegria tanto para o animal quanto para os adotantes. Os animais resgatados geralmente
+                                vêm de
+                                situações difíceis, mas com amor e cuidado, eles podem ser os melhores companheiros.
+                            </p>
+                            <div class="about-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-heart feature-icon"></i>
+                                    <h3>Amor Incondicional</h3>
+                                    <p>Pets adotados demonstram gratidão eterna e lealdade sem limites.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-shield-alt feature-icon"></i>
+                                    <h3>Responsabilidade</h3>
+                                    <p>Cada adoção é um compromisso sério com a vida e bem-estar do animal.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-users feature-icon"></i>
+                                    <h3>Comunidade</h3>
+                                    <p>Faça parte de uma comunidade que valoriza o respeito aos animais.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="pet-status">
-                            <span class="status-badge available">Disponível</span>
+                        <div class="about-visual">
+                            <div class="floating-cards">
+                                <div class="floating-card">
+                                    <i class="fas fa-paw"></i>
+                                </div>
+                                <div class="floating-card">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="floating-card">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="pet-info">
-                        <h3 class="pet-name"><%= data.nome_pet %></h3>
-                        <div class="pet-details">
-                            <span class="pet-age"><i class="fas fa-calendar"></i> <%= data.idade %></span>
-                            <!--<span class="pet-breed"><i class="fas fa-dna"></i> Siamês</span>-->
-                        </div>
-                        <p class="pet-description">
-                           <%= data.caracteristica %>
-                        </p>
-                       <!-- <div class="pet-traits">
+                </div>
+            </section>
+
+            <!-- Pets Section -->
+            <section id="pets" class="pets-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Pets para Adoção</h2>
+                        <% if(!msg){
+                            var opacityButton = 0;
+                            %>
+                            <p class="section-subtitle">Não temos pets disponivel no momento</p>
+                            <%}else{
+                                var opacityButton = 100;     
+                            %>
+                                <p class="section-subtitle">Conheça alguns dos nossos amigos esperando por um lar</p>
+                                <%}%>
+
+                                    <div class="section-divider"></div>
+                    </div>
+                    <div class="pets-grid">
+
+                        <% data.forEach(element=> {%>
+                            <div class="pet-card" data-pet="luna">
+                                <div class="pet-image-container">
+                                    <img src="data:image/png;base64, <%= element.img %>">
+                                    <div class="pet-overlay">
+                                        <div class="pet-actions">
+                                            <button class="action-btn favorite" title="Favoritar">
+                                                <i class="fas fa-heart"></i>
+                                            </button>
+                                            <button class="action-btn share" title="Compartilhar">
+                                                <i class="fas fa-share"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="pet-status">
+                                        <span class="status-badge available">Disponível</span>
+                                    </div>
+                                </div>
+                                <div class="pet-info">
+                                    <h3 class="pet-name">
+                                        <%= element.nome_pet %>
+                                    </h3>
+                                    <div class="pet-details">
+                                        <span class="pet-age"><i class="fas fa-calendar"></i>
+                                            <%= element.idade %>
+                                        </span>
+                                        <!--<span class="pet-breed"><i class="fas fa-dna"></i> Siamês</span>-->
+                                    </div>
+                                    <p class="pet-description">
+                                        <%= element.caracteristica %>
+                                    </p>
+                                    <!-- <div class="pet-traits">
                             <span class="trait">Carinhosa</span>
                             <span class="trait">Tranquila</span>
-                            <span class="trait">Afetuosa</span>-->
-                        </div>
-                        <a href="/login" class="adopt-btn">
-                            <i class="fas fa-heart"></i>
-                            Adotar <%= data.nome_pet %>
+                            <span class="trait">Afetuosa</span>
+                        </div>-->
+                                    <a href="/login" class="adopt-btn">
+                                        <i class="fas fa-heart"></i>
+                                        Adotar <%= data.nome_pet %>
+                                    </a>
+                                </div>
+                            </div>
+                            <%}); %>
+
+
+                    </div>
+                    <div class="section-footer">
+                        <a style="opacity: <%= opacityButton %>;" class="view-more-btn" href="/login">
+                            <span>Ver Todos os Pets</span>
+                            <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
+            </section>
 
-            </div>
-            <div class="section-footer">
-                <a class="view-more-btn" href="/login">
-                    <span>Ver Todos os Pets</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Carousel Section -->
-    <!--<section class="products-section">
+            <!-- Products Carousel Section -->
+            <!--<section class="products-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Ofertas da Semana</h2>
@@ -195,180 +212,182 @@
         </div>
     </section>-->
 
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="container">
-            <div class="newsletter-content">
-                <div class="newsletter-text">
-                    <h2>Fique por Dentro das Novidades</h2>
-                    <p>Receba dicas de cuidados, histórias inspiradoras e novidades sobre nossos pets em seu e-mail.</p>
-                </div>
-                <form class="newsletter-form" id="newsletterForm">
-                    <div class="form-group">
-                        <input type="email" placeholder="Seu melhor e-mail" required>
-                        <button type="submit">
-                            <i class="fas fa-paper-plane"></i>
-                            Inscrever-se
-                        </button>
-                    </div>
-                    <div class="newsletter-stats">
-                        <span><i class="fas fa-users"></i> +5000 inscritos</span>
-                        <span><i class="fas fa-envelope"></i> Newsletter semanal</span>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contato" class="contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Entre em Contato</h2>
-                <p class="section-subtitle">Tem alguma dúvida? Fale conosco, estamos aqui para ajudar!</p>
-                <div class="section-divider"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon-wrapper">
-                            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <!-- Newsletter Section -->
+            <section class="newsletter-section">
+                <div class="container">
+                    <div class="newsletter-content">
+                        <div class="newsletter-text">
+                            <h2>Fique por Dentro das Novidades</h2>
+                            <p>Receba dicas de cuidados, histórias inspiradoras e novidades sobre nossos pets em seu
+                                e-mail.</p>
                         </div>
-                        <div class="contact-details">
-                            <h3>Localização</h3>
-                            <p>São Paulo, SP - Brasil</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon-wrapper">
-                            <i class="fas fa-phone contact-icon"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Telefone</h3>
-                            <p>(11) 9999-9999</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon-wrapper">
-                            <i class="fas fa-envelope contact-icon"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>E-mail</h3>
-                            <p>contato@aventurapet.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon-wrapper">
-                            <i class="fas fa-clock contact-icon"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Horário</h3>
-                            <p>Seg-Sex: 8h às 18h</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contatoForm">
-                        <div class="form-row">
+                        <form class="newsletter-form" id="newsletterForm">
                             <div class="form-group">
-                                <label for="nome">Nome Completo</label>
-                                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                                <input type="email" placeholder="Seu melhor e-mail" required>
+                                <button type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Inscrever-se
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com"
-                                    required>
+                            <div class="newsletter-stats">
+                                <span><i class="fas fa-users"></i> +5000 inscritos</span>
+                                <span><i class="fas fa-envelope"></i> Newsletter semanal</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contato" class="contact-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Entre em Contato</h2>
+                        <p class="section-subtitle">Tem alguma dúvida? Fale conosco, estamos aqui para ajudar!</p>
+                        <div class="section-divider"></div>
+                    </div>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-card">
+                                <div class="contact-icon-wrapper">
+                                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Localização</h3>
+                                    <p>São Paulo, SP - Brasil</p>
+                                </div>
+                            </div>
+                            <div class="contact-card">
+                                <div class="contact-icon-wrapper">
+                                    <i class="fas fa-phone contact-icon"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Telefone</h3>
+                                    <p>(11) 9999-9999</p>
+                                </div>
+                            </div>
+                            <div class="contact-card">
+                                <div class="contact-icon-wrapper">
+                                    <i class="fas fa-envelope contact-icon"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>E-mail</h3>
+                                    <p>contato@aventurapet.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-card">
+                                <div class="contact-icon-wrapper">
+                                    <i class="fas fa-clock contact-icon"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Horário</h3>
+                                    <p>Seg-Sex: 8h às 18h</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="assunto">Assunto</label>
-                            <select id="assunto" name="assunto" required>
-                                <option value="">Selecione um assunto</option>
-                                <option value="adocao">Adoção de Pets</option>
-                                <option value="informacoes">Informações Gerais</option>
-                                <option value="parceria">Parcerias</option>
-                                <option value="outros">Outros</option>
-                            </select>
+                        <div class="contact-form-wrapper">
+                            <form class="contact-form" id="contatoForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nome">Nome Completo</label>
+                                        <input type="text" id="nome" name="nome" placeholder="Seu nome completo"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="assunto">Assunto</label>
+                                    <select id="assunto" name="assunto" required>
+                                        <option value="">Selecione um assunto</option>
+                                        <option value="adocao">Adoção de Pets</option>
+                                        <option value="informacoes">Informações Gerais</option>
+                                        <option value="parceria">Parcerias</option>
+                                        <option value="outros">Outros</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mensagem">Mensagem</label>
+                                    <textarea id="mensagem" name="mensagem"
+                                        placeholder="Conte-nos como podemos ajudar..." required></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Enviar Mensagem
+                                </button>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="mensagem">Mensagem</label>
-                            <textarea id="mensagem" name="mensagem" placeholder="Conte-nos como podemos ajudar..."
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            Enviar Mensagem
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Aventura Pet</h3>
-                    <p>Transformando vidas através da adoção responsável de animais.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#pets">Pets</a></li>
-                        <li><a href="pets.html">Todos os Pets</a></li>
-                    </ul>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-section">
+                            <h3>Aventura Pet</h3>
+                            <p>Transformando vidas através da adoção responsável de animais.</p>
+                            <div class="social-links">
+                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-section">
+                            <h4>Links Rápidos</h4>
+                            <ul>
+                                <li><a href="#home">Início</a></li>
+                                <li><a href="#sobre">Sobre</a></li>
+                                <li><a href="#pets">Pets</a></li>
+                                <li><a href="pets.html">Todos os Pets</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h4>Adoção</h4>
+                            <ul>
+                                <li><a href="#">Como Adotar</a></li>
+                                <li><a href="#">Requisitos</a></li>
+                                <li><a href="#">Dicas de Cuidados</a></li>
+                                <li><a href="#">Adoção Responsável</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h4>Contato</h4>
+                            <ul>
+                                <li><a href="#contato">Fale Conosco</a></li>
+                                <li><a href="#">Localização</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Suporte</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2025 Aventura Pet | Todos os direitos reservados. Desenvolvido com <i
+                                class="fas fa-heart"></i> para os animais.</p>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Adoção</h4>
-                    <ul>
-                        <li><a href="#">Como Adotar</a></li>
-                        <li><a href="#">Requisitos</a></li>
-                        <li><a href="#">Dicas de Cuidados</a></li>
-                        <li><a href="#">Adoção Responsável</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li><a href="#contato">Fale Conosco</a></li>
-                        <li><a href="#">Localização</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Suporte</a></li>
-                    </ul>
+            </footer>
+
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Custom Alert -->
+            <div class="custom-alert" id="customAlert">
+                <div class="alert-content">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Mensagem enviada com sucesso! Entraremos em contato em breve.</span>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Aventura Pet | Todos os direitos reservados. Desenvolvido com <i
-                        class="fas fa-heart"></i> para os animais.</p>
-            </div>
-        </div>
-    </footer>
 
-    <!-- Loading Spinner -->
-    <div class="loading-spinner" id="loadingSpinner">
-        <div class="spinner"></div>
-    </div>
+            <!-- Scripts -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
-    <!-- Custom Alert -->
-    <div class="custom-alert" id="customAlert">
-        <div class="alert-content">
-            <i class="fas fa-check-circle"></i>
-            <span>Mensagem enviada com sucesso! Entraremos em contato em breve.</span>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
-    
-    <script>document.getElementById('current-page').textContent = 'Home';</script>
+            <script>document.getElementById('current-page').textContent = 'Home';</script>
 </main>
