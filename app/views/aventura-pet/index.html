@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil Tinder</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <div class="profile-card">
+        <div class="profile-image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStNWJ6SelmEZcDAtqRsTEdORBwQ5ZYo3kqnw&s"
+                alt="Foto de {{nome}}" />
+        </div>
+
+        <div class="profile-info">
+            <div class="top-info">
+                <h2>Rex, 3 anos</h2>
+                <p class="location">📍 Barueri - SP</p>
+            </div>
+
+            <div class="interesses"></div>
+
+            <div class="caracteristicas">
+                <p><strong>Caracteristicas:</strong> {{linguagem_amor}}</p>
+                <p><strong>Distância:</strong> {{distancia}}</p>
+            </div>
+        </div>
+
+        <div class="botoes">
+          
+            <button id="dislike" class="btn dislike">✖️</button>
+         
+            <button id="like" class="btn like">💚</button>
+            <button id="send" class="btn send">📨</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
