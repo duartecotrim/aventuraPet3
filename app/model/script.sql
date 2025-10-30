@@ -27,6 +27,15 @@ CREATE TABLE password_hash(
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );
 
+-- tabela para armazenar os pets vizualizado pelo usuario
+CREATE TABLE view_pet_user(
+    id_view_pet_user INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT,
+    id_user_pet INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_user_pet) REFERENCES pet_user(id_user_pet)
+)
+
 CREATE TABLE pet_user(
     id_user_pet INT PRIMARY key AUTO_INCREMENT,
     id_usuario INT,   

@@ -71,7 +71,7 @@ aventuraPetRouter.post('/aventura-pet/add-img',
     function(req, res){
     const errorResult = validationResult(req);
         
-console.log(req.body)
+
     if(!errorResult.isEmpty()){
         if(!req.session.strErrorMsg){
             req.session.strErrorMsg = "";
@@ -87,8 +87,14 @@ console.log(req.body)
 });
 
 aventuraPetRouter.get('/aventura-pet/get-img', function(req, res){
+
     aventuraPetController.getImgPet(req, res,1)
 });
+
+aventuraPetRouter.get('/aventura-pet/view-pets', function(req, res){
+    //colocar a autenticação no futuro
+   aventuraPetController.viewPets(req, res);
+})
 
 module.exports = aventuraPetRouter;
 
