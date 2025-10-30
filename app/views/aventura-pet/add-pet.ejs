@@ -1,28 +1,124 @@
 <style>
-    .sizeImg {
-        width: 250px;
+    .image-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-3xl);
+    }
+
+    .image-preview-item {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 4px 15px var(--shadow-light);
+        transition: transform var(--transition-base);
+    }
+
+    .image-preview-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .image-preview-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .image-preview-item::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+        pointer-events: none;
+    }
+
+    .image-remove {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 0, 0, 0.8);
+        color: white;
+        border: none;
+        border-radius: var(--radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: var(--font-size-sm);
+        transition: background var(--transition-base);
+        z-index: 10;
+    }
+
+    .image-remove:hover {
+        background: rgba(255, 0, 0, 1);
+    }
+
+    @media (max-width: 768px) {
+        .image-preview-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
+<main class="animate-fade-in-up">
+    <%- include('../layout/msg'); -%>
 
-<main>
-    <%- include('../layout/msg'); 
-        
-    -%>
-    <form action="/aventura-pet/add-img" method="post" enctype="multipart/form-data">
-        <label>NOME DO PET</label>
-        <input type="text" name="namepet" id="">
-        <label>IDADE</label>
-        <input type="number" name="idade">
-        <label>CARATERISTICAS</label>
-        <input type="text" name="caracteristica">
-        <label>IMAGENS</label>
-        <input type="file" name="imgpet" id="imgpet" multiple accept="image/*">
-        <input type="submit" value="enviar">
-    </form>
-    <div id="imagens">
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Adicionar Novo Pet</h1>
+                <p class="section-subtitle">Preencha os dados do seu pet e adicione fotos para encontrar um lar amoroso</p>
+                <div class="section-divider"></div>
+            </div>
 
-    </div>
+            <div class="contact-form-wrapper">
+                <form action="/aventura-pet/add-img" method="post" enctype="multipart/form-data" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="namepet">Nome do Pet</label>
+                            <input type="text" name="namepet" id="namepet" required placeholder="Digite o nome do pet">
+                        </div>
+                        <div class="form-group">
+                            <label for="idade">Idade</label>
+                            <input type="number" name="idade" id="idade" min="0" max="30" required placeholder="Idade em anos">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="caracteristica">Características</label>
+                        <textarea name="caracteristica" id="caracteristica" rows="4" required placeholder="Descreva as características do pet (personalidade, porte, etc.)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imgpet">Imagens do Pet</label>
+                        <input type="file" name="imgpet" id="imgpet" multiple accept="image/*" required>
+                        <small style="color: var(--text-light); font-size: var(--font-size-sm);">Selecione até 3 imagens. Formatos aceitos: JPG, PNG, GIF</small>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paw"></i>
+                        Adicionar Pet
+                    </button>
+                </form>
+            </div>
+
+            <div id="imagens" class="image-preview-grid animate-fade-in-up" style="margin-top: var(--spacing-3xl);">
+                <!-- Imagens serão inseridas aqui via JavaScript -->
+            </div>
+        </div>
+    </section>
 </main>
+
+
 
 <script>
     document.getElementById('imgpet').addEventListener("change", function (e){
@@ -31,17 +127,32 @@
         if (e.target.files.length <= 3) {
 
             var elementoPaiImg = document.getElementById('imagens');
-            //ler a imagem passada no formulario
+            elementoPaiImg.innerHTML = ''; // Limpa previews anteriores
 
             for (let i = 0; i < e.target.files.length; i++) {
                 var reader = new FileReader();
                 reader.onload = function (img) {
+                    var container = document.createElement("div");
+                    container.className = "image-preview-item";
+
                     var elementoFilho = document.createElement("img");
-
                     elementoFilho.setAttribute("src", img.target.result);
-                    elementoFilho.setAttribute("class", "sizeImg")
 
-                    elementoPaiImg.append(elementoFilho);
+                    var removeBtn = document.createElement("button");
+                    removeBtn.className = "image-remove";
+                    removeBtn.innerHTML = "×";
+                    removeBtn.onclick = function() {
+                        container.remove();
+                        // Atualizar o input file removendo a imagem
+                        var dt = new DataTransfer();
+                        var files = Array.from(e.target.files);
+                        files.splice(i, 1);
+                        e.target.files = dt.files;
+                    };
+
+                    container.appendChild(elementoFilho);
+                    container.appendChild(removeBtn);
+                    elementoPaiImg.appendChild(container);
                 }
                 var file = e.target.files[i];
                 reader.readAsDataURL(file);
