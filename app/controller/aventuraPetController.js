@@ -1,13 +1,16 @@
 const petUserModel = require('../model/models/petUserModel');
 const imagePetModel = require('../model/models/imagePetModel');
 const userModel = require('../model/models/userModel');
+const contactUserModel = require('../model/models/contactUserModel');
+const searchCEP = require('../libs/searchCEP');
+const viewPetUser = require('../model/models/viewPetUser');
 
 userModel.belongsTo(petUserModel, { foreignKey: "id_usuario" });
 petUserModel.belongsTo(imagePetModel, { foreignKey: "id_user_pet" })
 
 module.exports = {
-    index: async function (req, res) {      
-        res.render('aventura-pet/index', { fileName: 'main'});
+    index: async function (req, res) {
+        res.render('aventura-pet/index', { fileName: 'main' });
     },
     addPetPage: function (req, res) {
 
@@ -40,6 +43,30 @@ module.exports = {
 
 
     },
+
+    viewPets: async function (req, res) {
+
+        //let idUser = req.session.userAutentication.dataUser[0].id_usuario;
+        let idUser = 1;
+        let contactUser = await contactUserModel.findAll({
+            where: { id_contato_usuario: idUser }
+        });
+
+        let arrContactUser = JSON.parse(JSON.stringify(contactUser, null));
+        //seta cep e latitude e longitude do usuario para pegar os pets por perto
+        let cep = arrContactUser[0].cep;
+        let dataSerachCEPUser = await searchCEP(cep);
+        let latitudeUser = dataSerachCEPUser.latitude;
+        let longitudeUser = dataSerachCEPUser.longitude;
+
+        
+
+
+        
+
+
+        res.render('aventura-pet/index', { fileName: 'principal' });
+    }
     //apagar codigo no futuro
     /*getImgPet: async function (req, res, idUser) {
         let data = await userModel.findAll({

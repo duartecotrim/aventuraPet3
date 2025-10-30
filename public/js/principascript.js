@@ -1,4 +1,4 @@
-git // Dados dos pets como array de objetos (mantendo tudo junto)
+//Dados dos pets como array de objetos (mantendo tudo junto)
 const pets = [
     {
       nome: "Bidu",
