@@ -52,3 +52,22 @@ CREATE TABLE image_pet(
     imagem LONGBLOB,
     FOREIGN KEY (id_user_pet) REFERENCES pet_user(id_user_pet)
 );
+
+
+-- TRAS TODOS OS PETS NAO VIZUALIZADO PELO USUARIO
+CREATE VIEW not_view_user_pet AS
+SELECT 
+	pet_user.id_usuario, pet_user.nome_pet, pet_user.idade, pet_user.caracteristica, pet_user.disponivel, pet_user.id_user_pet,
+    usuario.nome_usuario, 
+    contato_usuario.telefone, contato_usuario.cep,
+    image_pet.imagem,
+    view_pet_user.id_user_pet AS view_pet_id_user, view_pet_user.id_user_pet AS view_pet_id_pet, view_pet_user.id_user_pet AS view_pet_user_id
+FROM pet_user
+INNER JOIN usuario ON pet_user.id_usuario = usuario.id_usuario 
+INNER JOIN contato_usuario ON  pet_user.id_usuario = contato_usuario.id_usuario
+INNER JOIN image_pet ON pet_user.id_user_pet = image_pet.id_user_pet
+left JOIN view_pet_user ON pet_user.id_user_pet = view_pet_user.id_user_pet --  AND pet_user.id_user_pet = view_pet_user.id_user_pet
+
+WHERE pet_user.disponivel = 1 
+AND view_pet_user.id_usuario IS NULL; 
+-- AND view_pet_user.id_user_pet IS NULL
