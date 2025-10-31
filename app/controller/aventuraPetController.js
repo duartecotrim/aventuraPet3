@@ -2,11 +2,15 @@ const petUserModel = require('../model/models/petUserModel');
 const imagePetModel = require('../model/models/imagePetModel');
 const userModel = require('../model/models/userModel');
 const contactUserModel = require('../model/models/contactUserModel');
-const searchCEP = require('../libs/searchCEP');
-const viewPetUser = require('../model/models/viewPetUser');
+var searchCEP = require('../libs/searchCEP');
+const notViewUserPetModel = require('../model/models/notViewUserPetModel');
+const calcDistance = require('../libs/calcDistance');
 
-userModel.belongsTo(petUserModel, { foreignKey: "id_usuario" });
-petUserModel.belongsTo(imagePetModel, { foreignKey: "id_user_pet" })
+
+
+userModel.hasMany(petUserModel, { foreignKey: 'id_usuario' });
+petUserModel.belongsTo(userModel, { foreignKey: 'id_usuario' });
+
 
 module.exports = {
     index: async function (req, res) {
@@ -58,14 +62,45 @@ module.exports = {
         let dataSerachCEPUser = await searchCEP(cep);
         let latitudeUser = dataSerachCEPUser.latitude;
         let longitudeUser = dataSerachCEPUser.longitude;
+        console.log(dataSerachCEPUser);
+        //verificar se o pet esta dentro da configuraçao de distancia
+        let notViewUserPetAvaliable = await notViewUserPetModel.findAll(/*{limit:1, offset: 2}*/);
+        let numberPetDataBaseAvaliable = JSON.parse(JSON.stringify(notViewUserPetAvaliable, null)).length;
 
-        
+        if (!req.session.offsetPet) {
+            req.session.offsetPet = 1;
+        }
+
+        let notViewUserPet = await notViewUserPetModel.findAll({ limit: 1, offset: req.session.offsetPet });
+        let arrNotViewUserPet = JSON.parse(JSON.stringify(notViewUserPet, null));
+        let cepUserPet = arrNotViewUserPet[0].cep;
+        let dataSerachCEPUserPet = await this.promisseGetLatLong(cepUserPet)
+
+        console.log(dataSerachCEPUserPet)
+
+        let latitudeUserPet = dataSerachCEPUserPet.latitude;
+        let longitudeUserPet = dataSerachCEPUserPet.longitude;
+
+        let distance = calcDistance(latitudeUser, longitudeUser, latitudeUserPet, longitudeUserPet);
+
+        console.log(distance);
+        //verificar se o pet ja nao foi visto pelo usuario
 
 
-        
 
 
-        res.render('aventura-pet/index', { fileName: 'principal' });
+
+
+        //res.render('aventura-pet/index', { fileName: 'principal' });
+    },
+    promisseGetLatLong: function (cep) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(
+                    searchCEP(cep)
+                )
+            }, 2000)
+        })
     }
     //apagar codigo no futuro
     /*getImgPet: async function (req, res, idUser) {
