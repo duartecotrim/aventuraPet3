@@ -15,7 +15,7 @@ const calcDistance = function(lat1, lon1, lat2, lon2){
 
     const distance = R * c;
 
-    return distance;
+     return distance.toFixed(2);
 }
 
 module.exports = calcDistance;
