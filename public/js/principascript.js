@@ -44,10 +44,10 @@ const pets = [
       return;
     }
   
-    document.querySelector(".profile-image img").src = pet.foto_url;
-    document.querySelector(".profile-image img").alt = `Foto de ${pet.nome}`;
-    document.querySelector(".top-info h2").textContent = `${pet.nome}, ${pet.idade} anos`;
-    document.querySelector(".location").textContent = `📍 ${pet.localizacao}`;
+    //document.querySelector(".profile-image img").src = pet.foto_url;
+    //document.querySelector(".profile-image img").alt = `Foto de ${pet.nome}`;
+    //document.querySelector(".top-info h2").textContent = `${pet.nome}, ${pet.idade} anos`;
+    //document.querySelector(".location").textContent = `📍 ${pet.localizacao}`;
   
     const interessesContainer = document.querySelector(".interesses");
     interessesContainer.innerHTML = "";

@@ -32,9 +32,9 @@ const notViewUserPetModel = connect.define(
         cep:{
             type: DataTypes.CHAR
         },
-        /*imagem:{
+        imagem:{
             type: DataTypes.BLOB
-        },*/
+        },
     },
     {
         timestamps:false,

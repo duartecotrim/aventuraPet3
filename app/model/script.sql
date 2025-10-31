@@ -53,6 +53,14 @@ CREATE TABLE image_pet(
     FOREIGN KEY (id_user_pet) REFERENCES pet_user(id_user_pet)
 );
 
+CREATE TABLE configuracao_usuario(
+    id_configuracao_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT,
+    distancia INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);
+
+
 
 -- TRAS TODOS OS PETS NAO VIZUALIZADO PELO USUARIO
 CREATE VIEW not_view_user_pet AS
