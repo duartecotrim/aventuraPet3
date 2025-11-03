@@ -44,7 +44,29 @@ aventuraPetRouter.post('/aventura-pet/add-img',
                     max: 100
                 }
             }
-        }
+        },
+         idade:{
+            in:['body'],
+            escape: true,
+            trim: true,
+            errorMessage: "nome invalido tente novamente",
+            notEmpty: true,
+            isNumeric:true
+            
+         },
+          caracteristica:{
+            in:['body'],
+            escape: true,
+            trim: true,
+            errorMessage: "nome invalido tente novamente",
+            notEmpty: true,
+            isLength: {
+                options: {
+                    min: 4,
+                    max: 100
+                }
+            }
+          }
     }),   
     function(req, res){
     const errorResult = validationResult(req);
@@ -65,7 +87,25 @@ aventuraPetRouter.post('/aventura-pet/add-img',
 });
 
 aventuraPetRouter.get('/aventura-pet/get-img', function(req, res){
+
     aventuraPetController.getImgPet(req, res,1)
+});
+
+aventuraPetRouter.get('/aventura-pet/view-pets', function(req, res){
+    //colocar a autenticação no futuro
+   aventuraPetController.viewPets(req, res);
+});
+
+aventuraPetRouter.get('/aventura-pet/view-pets/dislike/:idUserPet', function(req, res){
+    //colocara a validação do id 
+    //colocar a autenticação
+    console.log(req.params);
+
+    aventuraPetController.dislike(req, res);
+}); 
+
+aventuraPetRouter.get('/aventura-pet/view-pets/like/:idUserPet', function(req, res){
+    console.log(req.params.idUserPet);
 });
 
 module.exports = aventuraPetRouter;
