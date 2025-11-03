@@ -83,16 +83,10 @@ const pets = [
     alert(`Mensagem enviada para ${email}:\n\n${mensagem}`);
   }
   
-  function mostrarSuperLike() {
-    const superlike = document.createElement("div");
-    superlike.textContent = "⭐ SUPER LIKE!";
-    superlike.className = "superlike-msg";
-    document.body.appendChild(superlike);
-    setTimeout(() => superlike.remove(), 2000);
-  }
+  
   
   // Usar querySelector com classes porque no seu HTML só tem classes, não ids.
-  document.querySelector(".dislike").addEventListener("click", () => {
+  /*document.querySelector(".dislike").addEventListener("click", () => {
     animarEProximo("left", () => {
       enviarMensagem(pets[currentIndex].email_usuario, `Você rejeitou o pet ${pets[currentIndex].nome}.`);
       currentIndex = (currentIndex + 1) % pets.length;
@@ -106,7 +100,7 @@ const pets = [
       currentIndex = (currentIndex + 1) % pets.length;
       carregarPet(currentIndex);
     });
-  });
+  });*/
   
     animarEProximo("right", () => {
       currentIndex = (currentIndex + 1) % pets.length;

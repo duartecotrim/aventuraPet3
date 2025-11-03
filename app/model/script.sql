@@ -32,6 +32,7 @@ CREATE TABLE view_pet_user(
     id_view_pet_user INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT,
     id_user_pet INT,
+    pet_like BOOLEAN
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_user_pet) REFERENCES pet_user(id_user_pet)
 )

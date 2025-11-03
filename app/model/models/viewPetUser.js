@@ -7,7 +7,7 @@ const viewPetUserModel = connect.define(
         id_view_pet_user:{
             type: DataTypes.INTEGER,
             primaryKey: true,
-            allowNull: false
+            autoIncrement: true
         },
         id_usuario:{
             type: DataTypes.INTEGER,
@@ -15,6 +15,10 @@ const viewPetUserModel = connect.define(
         },
         id_user_pet:{
             type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        pet_like:{
+            type:DataTypes.BOOLEAN,
             allowNull: false
         }
     },
