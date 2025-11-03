@@ -6,6 +6,7 @@ var searchCEP = require('../libs/searchCEP');
 const notViewUserPetModel = require('../model/models/notViewUserPetModel');
 const calcDistance = require('../libs/calcDistance');
 const configUserModel = require('../model/models/configUserModel');
+const viewPetUserModel = require('../model/models/viewPetUser');
 
 
 
@@ -45,8 +46,8 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
-
-
+        
+         res.render('aventura-pet/index', { fileName: 'main' });
     },
 
     viewPets: async function (req, res) {
@@ -77,13 +78,14 @@ module.exports = {
         //funcao que gera offset dinamicamente
         let numberPetDataBaseAvaliable = JSON.parse(JSON.stringify(notViewUserPetAvaliable, null)).length;
 
-        if (!req.session.offsetPet) {
+        if (!req.session.offsetPet) { 
             req.session.offsetPet = 2;
         }
 
         let notViewUserPet = await notViewUserPetModel.findAll({ limit: 1, offset: req.session.offsetPet });
+        console.log(notViewUserPet)
         let arrNotViewUserPet = JSON.parse(JSON.stringify(notViewUserPet, null));
-        console.log(arrNotViewUserPet)
+        
         let cepUserPet = arrNotViewUserPet[0].cep;
         let dataSerachCEPUserPet = await this.promisseGetLatLong(cepUserPet)
 
@@ -91,11 +93,11 @@ module.exports = {
 
         let latitudeUserPet = dataSerachCEPUserPet.latitude;
         let longitudeUserPet = dataSerachCEPUserPet.longitude;
-
+        let cidadeUserPet = dataSerachCEPUserPet.cidade.nome
         let distance = calcDistance(latitudeUser, longitudeUser, latitudeUserPet, longitudeUserPet);
-
+        //verifica se a distancia e menor que a distancia da configuração do usuario
         if(distance <= arrConfigUser[0].distancia){
-            req.session.offsetPet += 1;
+            //req.session.offsetPet += 1;
             var data = [];
             console.log(arrNotViewUserPet);
             arrNotViewUserPet.forEach(pet=>{
@@ -103,9 +105,11 @@ module.exports = {
                     img: Buffer.from(pet.imagem).toString('base64'),
                     nome_pet: pet.nome_pet,
                     idade: pet.idade,
-                    cidade: "",
+                    cidade: cidadeUserPet,
                     caracteristica: pet.caracteristica,
-                    distancia: distance
+                    distancia: distance,
+                    idUserPet: pet.id_user_pet,
+                    telefone : pet.telefone
                 });
            });
 
@@ -132,28 +136,30 @@ module.exports = {
                 )
             }, 2000)
         })
+    },
+
+    dislike: async function(req, res){
+        let idUserPet  = req.params.idUserPet;
+         //let idUser = req.session.userAutentication.dataUser[0].id_usuario;
+        let idUser = 1;
+
+        await viewPetUserModel.create({
+            id_usuario : idUser,
+            id_user_pet: idUserPet,
+            pet_like : false
+        });
+
+    },
+    like: async function(req, res){
+        let idUserPet  = req.params.idUserPet;
+         //let idUser = req.session.userAutentication.dataUser[0].id_usuario;
+        let idUser = 1;
+
+        await viewPetUserModel.create({
+            id_usuario : idUser,
+            id_user_pet: idUserPet,
+            pet_like : true
+        });
     }
-    //apagar codigo no futuro
-    /*getImgPet: async function (req, res, idUser) {
-        let data = await userModel.findAll({
-            where: { id_usuario: idUser },
-            include: {
-                model: petUserModel,
-                include: [imagePetModel]
-            }
-        }
-        );
-
-        var img = Buffer.from(data[0].pet_user.image_pet.imagem, "base64");
-       
-
-        return { 
-            "img": img,
-            "id_user_pet": data[0].pet_user.id_user_pet,
-            "nome_pet": data[0].pet_user.nome_pet,
-            "idade": data[0].pet_user.idade,
-            "caracteristica": data[0].pet_user.caracteristica
-        };
-        //console.log(JSON.parse(JSON.stringify(data[0].pet_user.image_pet, null)))
-    }*/
+    
 }

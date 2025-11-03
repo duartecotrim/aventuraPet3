@@ -94,7 +94,19 @@ aventuraPetRouter.get('/aventura-pet/get-img', function(req, res){
 aventuraPetRouter.get('/aventura-pet/view-pets', function(req, res){
     //colocar a autenticação no futuro
    aventuraPetController.viewPets(req, res);
-})
+});
+
+aventuraPetRouter.get('/aventura-pet/view-pets/dislike/:idUserPet', function(req, res){
+    //colocara a validação do id 
+    //colocar a autenticação
+    console.log(req.params);
+
+    aventuraPetController.dislike(req, res);
+}); 
+
+aventuraPetRouter.get('/aventura-pet/view-pets/like/:idUserPet', function(req, res){
+    console.log(req.params.idUserPet);
+});
 
 module.exports = aventuraPetRouter;
 

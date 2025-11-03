@@ -4,7 +4,7 @@
             <img src="data:image/png;base64, <%= data[0].img %>"
                 alt="Foto de {{nome}}" />
         </div>
-        <% console.log(data) %>
+        <% //console.log(data) %>
         <div class="profile-info">
             <div class="top-info">
                 <h2><%= data[0].nome_pet, data[0].idade %></h2>
@@ -21,10 +21,10 @@
 
         <div class="botoes">
           
-            <button id="dislike" class="btn dislike">✖️</button>
+            <a href="/aventura-pet/view-pets/dislike/<%= data[0].idUserPet %>" id="dislike" class="btn dislike">✖️</a>
          
-            <button id="like" class="btn like">💚</button>
-            <button id="send" class="btn send">📨</button>
+            <a href="/aventura-pet/view-pets/like/<%= data[0].idUserPet %>" id="like" class="btn like">💚</a>
+            <a href="https://wa.me/55<%= data[0].telefone %>" id="send" class="btn send">📨</a>
         </div>
     </div>
 </main>
