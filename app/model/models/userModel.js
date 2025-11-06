@@ -16,6 +16,10 @@ const userModel = connect.define(
         tipo_usuario:{
             type: DataTypes.BOOLEAN,
             allowNull: false
+        },
+        pet_visualizado:{
+            type: DataTypes.TEXT('long'),
+            allowNull: true
         }
     },
     {
