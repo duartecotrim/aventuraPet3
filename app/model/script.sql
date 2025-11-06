@@ -5,7 +5,8 @@ USE db_aventura_pet;
 CREATE TABLE usuario (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome_usuario VARCHAR(100), 
-    tipo_usuario BOOLEAN
+    tipo_usuario BOOLEAN,
+    pet_visualizado LONGTEXT
 );
 
 CREATE TABLE contato_usuario(
