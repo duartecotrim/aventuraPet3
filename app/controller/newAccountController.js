@@ -10,7 +10,7 @@ module.exports = {
         msgSession.cleanMsgError(req);
     },
     createAccount: async function(req, res) {
-        const { user_name, email, password, petPreference } = req.body;
+        const { user_name, email, password, phone, cep, petPreference } = req.body;
         
         try {
             // Check if email already exists
@@ -31,9 +31,10 @@ module.exports = {
             // For now, we'll use a default phone and cep since they're not in the slider
             await contactUserModel.create({
                 id_usuario: idNewUser,
-                telefone: '00000000000', // Default or you might want to add this to the slider
-                cep: '00000000', // Default or you might want to add this to the slider
-                email: email
+                telefone: phone,
+                cep: cep, 
+                email: email,
+                pet_visualizado: '{[]}'
             });
 
             let salt = bcrypt.genSaltSync(10);
