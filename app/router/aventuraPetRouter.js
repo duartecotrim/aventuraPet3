@@ -105,7 +105,8 @@ aventuraPetRouter.get('/aventura-pet/view-pets/dislike/:idUserPet', function(req
 }); 
 
 aventuraPetRouter.get('/aventura-pet/view-pets/like/:idUserPet', function(req, res){
-    console.log(req.params.idUserPet);
+    //console.log(req.params.idUserPet);
+    aventuraPetController.like(req, res);
 });
 
 module.exports = aventuraPetRouter;
